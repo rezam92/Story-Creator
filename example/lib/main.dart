@@ -28,6 +28,20 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
+        theme: ThemeData.dark(useMaterial3: true).copyWith(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.purpleAccent,
+              brightness: Brightness.dark).copyWith(
+            surface: Colors.white,
+            background: Colors.black,
+          ),
+          textTheme: const TextTheme(
+            titleMedium: TextStyle(
+              fontWeight: FontWeight.w500,
+              color: Colors.white,
+              fontSize: 16,
+            ),
+          ),
+        ),
         home: Scaffold(
           backgroundColor: Colors.black,
           floatingActionButton: Builder(builder: (context) {

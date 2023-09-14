@@ -124,15 +124,12 @@ class _BackgroundImageState extends State<BackgroundImage>
                                       height: Get.width * 0.95,
                                       width: Get.height * 0.80)
                                   : null,
-                              child: ColorFiltered(
-                                  colorFilter: ColorFilter.matrix(Constants
-                                      .filters[controller.selectedFilter]),
-                                  child: Image.file(
-                                    controller.backgroundImage.path.isEmpty
-                                        ? widget.file
-                                        : controller.backgroundImage,
-                                    fit: BoxFit.contain,
-                                  )),
+                              child: Image.file(
+                                controller.backgroundImage.path.isEmpty
+                                    ? widget.file
+                                    : controller.backgroundImage,
+                                fit: BoxFit.contain,
+                              ),
                             ),
                           ),
                         ),

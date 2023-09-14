@@ -19,18 +19,14 @@ editingBar({required BuildContext context, required File file}) {
     child: Row(
       children: [
         buildIcon(
+            theme: Theme.of(context),
             onTap: () async {
               Navigator.popUntil(context, (route) => route.isFirst);
             },
             icon: Icons.close),
         const Spacer(),
-        Get.find<EditingController>().editableItemInfo.isNotEmpty
-            ? undo(onTap: () {
-                Get.find<EditingController>().editableItemInfo.removeLast();
-              })
-            : const SizedBox(),
-        const SizedBox(width: 16.0),
         buildIcon(
+            theme: Theme.of(context),
             icon: Icons.crop,
             onTap: () {
               takeScreenshotAndReturnMemoryImage(getScreenshotKey)
@@ -39,28 +35,75 @@ editingBar({required BuildContext context, required File file}) {
                     context,
                     MaterialPageRoute(
                         builder: (context) => CropView(image: file)
-                        // builder: (context) => CropView2(image:file,title: "Hello",)
                     ));
               });
             }),
-        const SizedBox(width: 16.0),
-        buildIcon(
-            icon: Icons.emoji_emotions_outlined,
-            onTap: () => Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const GraphicView()))),
-        const SizedBox(width: 16.0),
-        buildIcon(
-            icon: Icons.title,
-            onTap: () => Get.find<EditingController>().editingModeSelected =
-                EDITINGMODE.TEXT),
-        const SizedBox(width: 16.0),
-        buildIcon(
-            icon: Icons.edit,
-            onTap: () {
-              Get.find<EditingController>().editingModeSelected =
-                  EDITINGMODE.DRAWING;
-            })
+        const SizedBox(width: 4.0),
+        const VisibilityButton(),
       ],
     ),
   );
+}
+
+class VisibilityButton extends StatefulWidget {
+  const VisibilityButton({Key? key}) : super(key: key);
+
+  @override
+  State<VisibilityButton> createState() => _VisibilityButtonState();
+}
+class _VisibilityButtonState extends State<VisibilityButton> {
+  bool isVisible = false;
+  @override
+  Widget build(BuildContext context) {
+    return Visibility(
+      visible: isVisible,
+        replacement: buildIconButton(),
+        child: Row(
+          children: [
+            Get.find<EditingController>().editableItemInfo.isNotEmpty
+                ? undo(onTap: () {
+              Get.find<EditingController>().editableItemInfo.removeLast();
+            })
+                : const SizedBox.shrink(),
+            buildIcon(
+                theme: Theme.of(context),
+                icon: Icons.emoji_emotions_outlined,
+                onTap: () => Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const GraphicView()))),
+            const SizedBox(width: 4.0),
+            buildIcon(
+                theme: Theme.of(context),
+                icon: Icons.title,
+                onTap: () => Get.find<EditingController>().editingModeSelected =
+                    EDITINGMODE.TEXT),
+            const SizedBox(width: 4.0),
+            buildIcon(
+                theme: Theme.of(context),
+                icon: Icons.edit,
+                onTap: () {
+                  Get.find<EditingController>().editingModeSelected =
+                      EDITINGMODE.DRAWING;
+                }),
+            const SizedBox(width: 12.0),
+            buildIconButton(),
+          ],
+        )
+    );
+  }
+
+  Widget buildIconButton() {
+    return IconButton(
+        onPressed: (){
+          setState(() {
+            isVisible = !isVisible;
+          });
+        }, icon:
+        Icon(isVisible? Icons.arrow_circle_right :
+        Icons.arrow_circle_left,
+            color: Theme.of(context).colorScheme.surface, size: 36.0
+        )
+    );
+
+  }
+
 }

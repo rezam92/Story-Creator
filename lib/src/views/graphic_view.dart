@@ -219,7 +219,11 @@ class _GraphicViewState extends State<GraphicView> {
 
   _topBar(BuildContext context) {
     return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-      buildIcon(icon: Icons.arrow_back, onTap: () => Navigator.pop(context)),
+      buildIcon(
+          icon: Icons.arrow_back,
+          onTap: () => Navigator.pop(context),
+          theme: Theme.of(context),
+      ),
       Obx(() => circleWidget(
           radius: 40,
           bgColor: Get.find<EditingController>().hueController.value.toColor(),
@@ -263,7 +267,9 @@ class _GraphicViewState extends State<GraphicView> {
   _switchBar() => Row(children: [
         buildIcon(
             icon: Icons.search,
-            onTap: () => setState(() => isSearchSelected = true)),
+            onTap: () => setState(() => isSearchSelected = true),
+          theme: Theme.of(context),
+        ),
         const Spacer(),
         GestureDetector(
           onTap: () => setState(() => switchSelected = 0),

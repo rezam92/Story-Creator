@@ -7,7 +7,6 @@ import 'package:whatsapp_story_editor/src/enums/editing_mode.dart';
 import 'package:whatsapp_story_editor/src/models/graphic_info.dart';
 import 'package:whatsapp_story_editor/src/models/text_info.dart';
 import 'package:whatsapp_story_editor/src/widgets/color_picker_slider.dart';
-import 'package:whatsapp_story_editor/src/widgets/bars/bottom_bar.dart';
 import 'package:whatsapp_story_editor/src/widgets/bars/caption_bar.dart';
 import 'package:whatsapp_story_editor/src/widgets/circle_widget.dart';
 import 'package:whatsapp_story_editor/src/widgets/done_btn.dart';
@@ -42,7 +41,6 @@ class _TextViewState extends State<TextView> {
             _textBar(),
             const Spacer(),
             captionBar(context: context),
-            bottomBar(context: context),
           ],
         ),
 
@@ -84,7 +82,7 @@ class _TextViewState extends State<TextView> {
         children: [
           doneBtn(onTap: () async {
             controller.editingModeSelected = EDITINGMODE.NONE;
-          }),
+          }, theme: Theme.of(context)),
           const Spacer(),
           Obx(() => controller.getEditableTextType().isNotEmpty
               ? undo(

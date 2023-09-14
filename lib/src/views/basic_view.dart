@@ -1,14 +1,10 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:whatsapp_story_editor/src/constants.dart';
 import 'package:whatsapp_story_editor/src/controller/editing_controller.dart';
-import 'package:whatsapp_story_editor/src/widgets/bars/bottom_bar.dart';
 import 'package:whatsapp_story_editor/src/widgets/bars/caption_bar.dart';
 import 'package:whatsapp_story_editor/src/widgets/bars/deletion_bar.dart';
 import 'package:whatsapp_story_editor/src/widgets/bars/editing_bar.dart';
-import 'package:whatsapp_story_editor/src/widgets/filter_title.dart';
-import '../widgets/vertical_gest_behavior.dart';
 
 /// the basic skeleton of all editing bars
 class BasicView extends StatelessWidget {
@@ -17,28 +13,15 @@ class BasicView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
+    return Column(
       children: [
-        Column(
-          children: [
-            Obx(
-              () => Get.find<EditingController>().isDeletionEligible
-                  ? deletionBar(context: context)
-                  : editingBar(file: file, context: context),
-            ),
-            const Spacer(),
-            captionBar(context: context),
-            bottomBar(context: context),
-          ],
+        Obx(
+          () => Get.find<EditingController>().isDeletionEligible
+              ? deletionBar(context: context)
+              : editingBar(file: file, context: context),
         ),
-        Positioned(
-          right: 0,
-          left: 0,
-          bottom: MediaQuery.of(context).size.height *
-              (Constants.captionBarHeightRatio +
-                  Constants.bottomBarHeightRatio),
-          child: verticalGestureBehavior(child: filterTitle()),
-        ),
+        const Spacer(),
+        captionBar(context: context),
       ],
     );
   }

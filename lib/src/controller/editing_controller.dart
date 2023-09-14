@@ -7,7 +7,7 @@ import 'package:whatsapp_story_editor/src/enums/editing_mode.dart';
 
 class EditingController extends GetxController {
   /// The color selected from the color vertical slider
-  final Rx<HSVColor> _hueController = HSVColor.fromColor(Colors.green).obs;
+  final Rx<HSVColor> _hueController = HSVColor.fromColor(Colors.purple).obs;
   Rx<HSVColor> get hueController => _hueController;
   set hueController(Rx<HSVColor> hueController) =>
       _hueController.value = hueController.value;

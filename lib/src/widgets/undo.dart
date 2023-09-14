@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 
-undo({Function? onTap}) => GestureDetector(
-      onTap: (() {
-        if (onTap != null) onTap();
-      }),
-      child: SizedBox(
-        height: 28,
-        child: Image.asset(
-          'assets/icons/undo.png',
-          package: 'whatsapp_story_editor',
-          fit: BoxFit.fitHeight,
-        ),
-      ),
-    );
+undo({Function? onTap}) =>
+IconButton(
+        onPressed: onTap as void Function()?,
+        icon: const Icon(
+          Icons.undo,
+          color: Colors.white,
+          size: 28,
+        )
+);

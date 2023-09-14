@@ -79,6 +79,7 @@ class _CropViewState extends State<CropView> {
                     style: TextStyle(color: Colors.white)))),
         buildIcon(
             icon: Icons.rotate_90_degrees_ccw,
+            theme: Theme.of(context),
             onTap: () {
               setState(() {
                 // between the range of [0,3]

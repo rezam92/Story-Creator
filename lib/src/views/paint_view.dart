@@ -72,9 +72,10 @@ class _PaintViewState extends State<PaintView> {
         padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10),
         child: Row(
           children: [
-            doneBtn(onTap: () {
+            doneBtn(
+                onTap: () {
               controller.editingModeSelected = EDITINGMODE.NONE;
-            }),
+            }, theme: Theme.of(context)),
             const Spacer(),
             undo(onTap: () {
               setState(() {

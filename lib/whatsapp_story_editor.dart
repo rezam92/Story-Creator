@@ -2,9 +2,9 @@ library whatsapp_story_editor;
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker_plus/image_picker_plus.dart';
 import 'package:whatsapp_story_editor/src/controller/editing_binding.dart';
 import 'package:whatsapp_story_editor/src/views/main_view.dart';
-import 'package:whatsapp_camera/whatsapp_camera.dart';
 
 ///To encapsulate the result of editing a WhatsApp story.
 ///The image property contains the edited image,
@@ -28,24 +28,21 @@ class _WhatsappStoryEditorState extends State<WhatsappStoryEditor> {
   void initState() {
     //Switch to WhatsappCamera
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const WhatsappCamera(),
-        ),
-      ).then((res) {
-        //pass results to MainController
-        if (res != null) {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => MainControllerView(
-                file: res[0],
-              ),
+      ImagePickerPlus picker = ImagePickerPlus(context);
+
+      SelectedImagesDetails? details =
+      await picker.pickImage(source: ImageSource.gallery);
+      if (details == null || details.selectedFiles.isEmpty) return;
+      if (context.mounted) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => MainControllerView(
+              file: details.selectedFiles[0].selectedFile,
             ),
-          );
-        }
-      });
+          ),
+        );
+      }
     });
     super.initState();
   }
@@ -66,7 +63,6 @@ class _WhatsappStoryEditorState extends State<WhatsappStoryEditor> {
       child: GetMaterialApp(
         initialBinding: EditingBinding(),
         debugShowCheckedModeBanner: false,
-        color: Colors.black,
         home: Container(),
       ),
     );

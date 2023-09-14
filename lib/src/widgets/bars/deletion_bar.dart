@@ -10,8 +10,7 @@ deletionBar({required BuildContext context}) {
     padding: const EdgeInsets.symmetric(horizontal: 20.0),
     child: Row(
       children: [
-        buildIcon(onTap: () {}, icon: Icons.delete_outline_rounded),
-        const Spacer(),
+        buildIcon(onTap: () {}, icon: Icons.delete_outline_rounded, theme: Theme.of(context)),
       ],
     ),
   );
