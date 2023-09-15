@@ -1,32 +1,33 @@
-Flutter package to add story editing features similar to Whatsapp. Make Stories like whatsapp and add texts, stickers, painting on your photo along with basic features like crop, rotation, and also add captions to it.
+# Story creator
+### Better version of Whatsapp Story Editor(https://pub.dev/packages/story_creator_plus)
+
+[![pub package](https://img.shields.io/pub/v/story_creator_plus.svg)](https://pub.dev/packages/story_creator_plus)
+## Flutter package to create and edit stories like Whatsapp, Facebook, Instagram and Snapchat.
 
 ## How to Use
-To use whatsapp_story_editor, follow the following steps:
+To use story_creator_plus, follow the following steps:
 
 ### Step1: Adding plugin dependency
 add the plugin to your pubspec.yaml file:
 
 ```yaml
-whatsapp_story_editor: [latest_version]
+story_creator_plus: [latest_version]
 ```
 
 ### Step2: Importing the package.
 import the plugin in [your_file].dart
 
 ```dart
-import 'package:whatsapp_story_editor/story_creator.dart';
+import 'package:story_creator_plus/story_creator.dart';
 ```
-
-### Step3: Navigate to Whatsapp Story Editor Page
-Navigate to WhatsappStortEditor Page on button click, you can find a whatsapp Camera button in the example file for reference. It will land you to the camera page which allows you to capture or select the photo from gallery upon your conscent.
 
 ```dart
  Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const WhatsappStoryEditor()),
+                MaterialPageRoute(builder: (context) => const StoryCreator()),
 );
 ```
-
+this opens the image_picker which picks story image
 
 this returns an Object containing the edited photo and caption as Future<WhatsappStoryEditorResult> as:
 
@@ -34,15 +35,15 @@ this returns an Object containing the edited photo and caption as Future<Whatsap
   Navigator.push(
                 context,
                 MaterialPageRoute(
-                      builder: (context) => const WhatsappStoryEditor()),
-                ).then((whatsappStoryEditorResult) {
-                  if (whatsappStoryEditorResult != null) {
+                      builder: (context) => const StoryCreator()),
+                ).then((result) {
+                  if (result != null) {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (context) => SavedImageView(
-                                image: whatsappStoryEditorResult.image,
-                                caption: whatsappStoryEditorResult.caption,
+                                image: result.image,
+                                caption: result.caption,
                               )),
                     );
                 }
@@ -50,11 +51,11 @@ this returns an Object containing the edited photo and caption as Future<Whatsap
 );
 ```
 
-Note that the whatsappStoryEditorResult could be null if the user dosnt makes any edit on the photo and leaves. [SavedImageView](https://pub.dev/packages/whatsapp_story_editor/example/saved_image_view.dart) is the page where you could show the edited photo and caption. You may change as you need it to be.
+Note that the result could be null if the user doesn't makes any edit on the photo and leaves. [SavedImageView](https://pub.dev/packages/story_creator_plus/example/saved_image_view.dart) is the page where you could show the edited photo and caption. You may change as you need it to be.
 
 
 ### Example
-Please refer to the example file for detailed usage and example [here](https://pub.dev/packages/whatsapp_story_editor/example)
+Please refer to the example file for detailed usage and example [here](https://pub.dev/packages/story_creator_plus/example)
 
 
 ## Example Images:
@@ -62,15 +63,16 @@ Please refer to the example file for detailed usage and example [here](https://p
  <img src="https://imgur.com/wNx4dfd.png" width="180" />  <img src="https://imgur.com/tZRqrAm.png" width="180" />  <img src="https://imgur.com/cTdIMd6.png" width="180" />  <img src="https://imgur.com/3cynFSd.png" width="180" />  <img src="https://imgur.com/yHXWekp.png" width="180" /> <img src="https://imgur.com/lgExybA.png" width="180" /> <img src="https://imgur.com/nJj8bdU.png" width="180"/> <img src="https://imgur.com/g1cshOZ.png" width="180" /> <img src="https://imgur.com/iGUJrJO.png" width="180" /> <img src="https://imgur.com/9RhJZZO.png" width="180" /> <img src="https://imgur.com/VsaTpIF.png" width="180" /> <img src="https://imgur.com/PHTO5IB.png" width="180" /> <img src="https://imgur.com/i6RBM88.png" width="180" /> <img src="https://imgur.com/u660duD.png" width="180" /> 
  
 
+# Credits
+Whatsapp_story_editor is Created by [Javeria Iffat](https://www.linkedin.com/in/javeria-iffat/)
+Edited and modified by [Ritom Ghosh](https://twitter.com/mister_ritom)
 
-Created by [Javeria Iffat](https://www.linkedin.com/in/javeria-iffat/)
+## TODOS
+There are some major bugs while scaling, so they need to be fixed
+The ui needs more changes, so it doesn't look like just a copy of whatsapp
+Find a way to make it use less ram and make it faster.
 
-## Future Work
-For now, only one image editing capability is being handled by Whatsapp Story Editor in this version.
-
-## FAQ
-
-In case you need: to add new feature or you get any error or any help, please contact me at javeriaiffat312@gmail.com or javeria.iffat@lums.edu.pk
-please be kind if you get any errors, text me I'll be more than happy to help you all.
+## Contributions
+Contributions are welcome and appreciated. Open an issue first if you want to make major changes.
 
 THANK YOU!
