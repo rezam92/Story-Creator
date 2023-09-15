@@ -16,6 +16,6 @@ circleWidget(
           width: radius,
           decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: bgColor ?? const Color.fromARGB(255, 7, 191, 139)),
+              color: bgColor ?? Colors.transparent,),
           child: child),
     );

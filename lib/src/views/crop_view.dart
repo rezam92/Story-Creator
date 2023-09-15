@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:image_crop_plus_updated/image_crop_plus_updated.dart';
 import 'package:whatsapp_story_editor/src/controller/editing_controller.dart';
 import 'package:whatsapp_story_editor/src/controller/utils.dart';
+import 'package:whatsapp_story_editor/src/widgets/done_btn.dart';
 import 'package:whatsapp_story_editor/src/widgets/icon_widget.dart';
 
 //Allows to crop image
@@ -66,17 +67,11 @@ class _CropViewState extends State<CropView> {
     return Padding(
       padding:
           EdgeInsets.symmetric(horizontal: screenWid * 0.10, vertical: 12.0),
-      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        GestureDetector(
-            onTap: () {
-              Navigator.of(context).pop();
-            },
-            child: Container(
-                height: 40,
-                width: screenWid * 0.65 / 2,
-                alignment: Alignment.centerLeft,
-                child: const Text("Cancel",
-                    style: TextStyle(color: Colors.white)))),
+      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+        buildTextBtn(text: "Cancel", theme: Theme.of(context), onTap: () {
+          Navigator.of(context).pop();
+        },),
         buildIcon(
             icon: Icons.rotate_90_degrees_ccw,
             theme: Theme.of(context),
@@ -104,16 +99,7 @@ class _CropViewState extends State<CropView> {
                 controller.rotationAngle = angle;
               });
             }),
-        GestureDetector(
-            onTap: () {
-              _cropAndNotifyImage();
-            },
-            child: Container(
-                alignment: Alignment.centerRight,
-                height: 40,
-                width: screenWid * 0.65 / 2,
-                child:
-                    const Text("Done", style: TextStyle(color: Colors.white)))),
+        doneBtn(theme: Theme.of(context), onTap: _cropAndNotifyImage),
       ]),
     );
   }

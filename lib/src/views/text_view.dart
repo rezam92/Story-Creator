@@ -57,11 +57,12 @@ class _TextViewState extends State<TextView> {
   }
 
   _showTextEditDialog() {
-    TextDialog.show(context, TextEditingController(), 36,
+    TextDialog.show(context, TextEditingController(),
+        Theme.of(context).textTheme.bodyMedium?.fontSize?? 20,
         controller.hueController.value.toColor(),
         onFinished: (context) => Navigator.of(context).pop(),
         onSubmitted: (text) {
-          controller.addtoEditableItemList(EditableItem(
+          controller.addToEditableItemList(EditableItem(
             editableItemType: EditableItemType.text,
             matrixInfo: Matrix4.identity(),
             text: TextInfo(
@@ -77,7 +78,7 @@ class _TextViewState extends State<TextView> {
   _textBar() {
     final controller = Get.find<EditingController>();
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10),
+      padding: const EdgeInsets.all(10),
       child: Row(
         children: [
           doneBtn(onTap: () async {
@@ -88,7 +89,9 @@ class _TextViewState extends State<TextView> {
               ? undo(
                   onTap: () => setState(() {
                         controller.undoLastEditableTextItem();
-                      }))
+                      },),
+                  theme: Theme.of(context)
+              )
               : const SizedBox()),
           const SizedBox(width: 10.0),
           Obx(
@@ -96,9 +99,9 @@ class _TextViewState extends State<TextView> {
                 radius: 45,
                 bgColor: controller.hueController.value.toColor(),
                 onTap: () => TextDialog.show(context, TextEditingController(),
-                    16, controller.hueController.value.toColor(),
+                    Theme.of(context).textTheme.bodyMedium?.fontSize?? 20, controller.hueController.value.toColor(),
                     onFinished: (context) => Navigator.of(context).pop(),
-                    onSubmitted: (text) => controller.addtoEditableItemList(
+                    onSubmitted: (text) => controller.addToEditableItemList(
                         EditableItem(
                             editableItemType: EditableItemType.text,
                             matrixInfo: Matrix4.identity(),

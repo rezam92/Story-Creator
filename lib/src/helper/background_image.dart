@@ -28,7 +28,6 @@ class _BackgroundImageState extends State<BackgroundImage>
   late AnimationController animationController;
   late Animation<double> animation;
   bool isAnimating = false;
-  double scaleFactor = 1.0;
   int currentTransformingWidget = -1;
 
   void _runAnimation() {
@@ -89,30 +88,7 @@ class _BackgroundImageState extends State<BackgroundImage>
                 alignment: Alignment.center,
                 clipBehavior: Clip.none,
                 fit: StackFit.expand,
-                children: [
-                  //Image Layer [With/Without] Filter
-                  controller.selectedFilter == 0
-                      ? Transform.rotate(
-                          angle: controller.rotationAngle,
-                          child: Center(
-                            child: Container(
-                              //Only if image if horizontally rotated, it gets out of the screen visual bounds
-                              constraints: controller.rotation == 1 ||
-                                      controller.rotation == 3
-                                  ? BoxConstraints.tightFor(
-                                      // this specific height and width so it gets fit when flipped
-                                      height: Get.width * 0.95,
-                                      width: Get.height * 0.80)
-                                  : null,
-                              child: Image.file(
-                                  controller.backgroundImage.path.isEmpty
-                                      ? widget.file
-                                      : controller.backgroundImage,
-                                  fit: BoxFit.contain),
-                            ),
-                          ),
-                        )
-                      : Transform.rotate(
+                children: [Transform.rotate(
                           angle: controller.rotationAngle,
                           child: Center(
                             child: Container(
@@ -157,7 +133,7 @@ class _BackgroundImageState extends State<BackgroundImage>
                                           .elementAt(j)!
                                           .text!
                                           .text),
-                                  36,
+                                  Theme.of(context).textTheme.bodyMedium?.fontSize?? 20,
                                   controller.editableItemInfo
                                       .elementAt(j)!
                                       .text!
@@ -191,16 +167,22 @@ class _BackgroundImageState extends State<BackgroundImage>
                                   text: controller.editableItemInfo
                                       .elementAt(j)!
                                       .text,
-                                  matrixInfo: matrix4);
+                                  matrixInfo: matrix4,
+                                scaleFactor: controller.editableItemInfo
+                                    .elementAt(j)!
+                                    .scaleFactor,
+                              );
                             },
                             onScaleStart: (details) {
+                              print("Scaling Started");
                               setState(
-                                  () => scaleFactor = details.scale.toDouble());
+                                  () => controller.editableItemInfo[j]?.
+                                  scaleFactor = details.scale.toDouble());
                               checkIfDeletionEligible(j, details);
                             },
                             onScaleEnd: (d) {
+                              print("Scaling Ended");
                               controller.isDeletionEligible = false;
-                              setState(() {});
                             },
                             transform: controller.editableItemInfo
                                 .elementAt(j)!
@@ -222,12 +204,12 @@ class _BackgroundImageState extends State<BackgroundImage>
                                         .text,
                                     textAlign: TextAlign.center,
                                     maxLines: 4,
-                                    textScaleFactor: scaleFactor,
+                                    textScaleFactor: controller.
+                                      editableItemInfo[j]?.scaleFactor,
                                     softWrap: true,
                                     style: Theme.of(context)
                                         .textTheme
-                                        .headlineLarge!
-                                        .copyWith(
+                                        .bodyMedium?.copyWith(
                                             color: controller.editableItemInfo
                                                 .elementAt(j)!
                                                 .text!
@@ -259,7 +241,11 @@ class _BackgroundImageState extends State<BackgroundImage>
                                           .editableItemInfo
                                           .elementAt(j)!
                                           .graphicImagePath,
-                                      matrixInfo: matrix4);
+                                      matrixInfo: matrix4,
+                                    scaleFactor: controller.editableItemInfo
+                                        .elementAt(j)!
+                                        .scaleFactor,
+                                  );
                                 },
                                 child: ScaleTransition(
                                     scale: currentTransformingWidget == j

@@ -48,23 +48,11 @@ class _WhatsappStoryEditorState extends State<WhatsappStoryEditor> {
   }
 
   @override
-  void dispose() {
-    // files.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
-        Navigator.popUntil(context, (route) => route.isFirst);
-        return true;
-      },
-      child: GetMaterialApp(
-        initialBinding: EditingBinding(),
-        debugShowCheckedModeBanner: false,
-        home: Container(),
-      ),
+    return GetMaterialApp(
+      initialBinding: EditingBinding(),
+      debugShowCheckedModeBanner: false,
+      home: Container(),
     );
   }
 }

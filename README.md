@@ -14,7 +14,7 @@ whatsapp_story_editor: [latest_version]
 import the plugin in [your_file].dart
 
 ```dart
-import 'package:whatsapp_story_editor/whatsapp_story_editor.dart';
+import 'package:whatsapp_story_editor/story_creator.dart';
 ```
 
 ### Step3: Navigate to Whatsapp Story Editor Page

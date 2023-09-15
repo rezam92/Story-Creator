@@ -1,7 +1,7 @@
 import 'package:example/saved_image_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:whatsapp_story_editor/whatsapp_story_editor.dart';
+import 'package:whatsapp_story_editor/story_creator.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(

@@ -3,11 +3,11 @@ import 'package:get/get.dart';
 import 'package:whatsapp_story_editor/src/constants.dart';
 import 'package:whatsapp_story_editor/src/controller/editing_controller.dart';
 
-import '../../../whatsapp_story_editor.dart';
+import '../../../story_creator.dart';
 import '../../controller/utils.dart';
 
 //Allows to add caption on the image
-Container captionBar({required BuildContext context}) {
+Widget captionBar({required BuildContext context}) {
   final EditingController controller = Get.find<EditingController>();
   return Container(
     height:
@@ -16,7 +16,8 @@ Container captionBar({required BuildContext context}) {
     padding: const EdgeInsets.symmetric(horizontal: 16.0),
     decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.primary.withOpacity(0.3),
-        borderRadius: const BorderRadius.all(Radius.circular(24.0))),
+        borderRadius: BorderRadius.circular(16),
+    ),
     child: Row(children: [
       Obx(() {
         return Expanded(

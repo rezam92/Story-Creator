@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:whatsapp_story_editor/src/widgets/icon_widget.dart';
 
-undo({Function? onTap}) =>
-IconButton(
-        onPressed: onTap as void Function()?,
-        icon: const Icon(
-          Icons.undo,
-          color: Colors.white,
-          size: 28,
-        )
-);
+undo({Function? onTap, required ThemeData theme}) =>
+    buildIcon(icon: Icons.undo, theme: theme, onTap: (){
+      if(onTap != null){
+        onTap();
+      }
+    });

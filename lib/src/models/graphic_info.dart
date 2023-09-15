@@ -10,13 +10,16 @@ class EditableItem {
   final String? graphicImagePath;
   final String? shapeSvg;
   final Matrix4 matrixInfo;
+  double scaleFactor = 1.0;
 
   EditableItem(
       {this.graphicImagePath,
       this.text,
       this.shapeSvg,
       required this.editableItemType,
-      required this.matrixInfo})
+      required this.matrixInfo,
+      this.scaleFactor = 1.0
+      })
       : assert(
             (editableItemType == EditableItemType.graphic &&
                     graphicImagePath != null) ||
@@ -31,6 +34,7 @@ class EditableItem {
     TextInfo? text,
     String? shapeSvg,
     EditableItemType? editableItemType,
+    double? scaleFactor,
   }) {
     return EditableItem(
       graphicImagePath: graphicImagePath ?? this.graphicImagePath,
@@ -38,6 +42,7 @@ class EditableItem {
       text: text ?? this.text,
       shapeSvg: shapeSvg ?? this.shapeSvg,
       editableItemType: editableItemType ?? this.editableItemType,
+      scaleFactor: scaleFactor ?? this.scaleFactor,
     );
   }
 

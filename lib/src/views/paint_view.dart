@@ -83,7 +83,7 @@ class _PaintViewState extends State<PaintView> {
                 line = null;
                 drawingUndoController.add(true);
               });
-            }),
+            }, theme: Theme.of(context)),
             const SizedBox(width: 14),
             Obx(() => circleWidget(
                 radius: 45,

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:whatsapp_story_editor/src/constants.dart';
 
 class TextDialog extends StatelessWidget {
   const TextDialog({
@@ -36,34 +34,29 @@ class TextDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Colors.transparent,
-      child: Container(
-        margin: EdgeInsets.only(
-            top: Get.height * Constants.editingBarHeightRatio, right: 40),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            TextField(
-              controller: controller,
-              autofocus: true,
-              style: TextStyle(
-                  fontSize: fontSize,
-                  fontWeight: FontWeight.bold,
-                  color: color),
-              textAlign: TextAlign.center,
-              decoration: const InputDecoration(
-                contentPadding: EdgeInsets.symmetric(horizontal: 10),
-                border: InputBorder.none,
+      type: MaterialType.transparency,
+      child: Center(
+        child: TextField(
+          controller: controller,
+          autofocus: true,
+          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                fontSize: fontSize,
+                color: color,
+              )?? TextStyle(
+                fontSize: fontSize,
+                color: color,
               ),
-              onTapOutside: (e) {
-                onFinished();
-              },
-              onEditingComplete: onFinished,
-              onSubmitted: (s) {
-                onSubmitted!(s);
-              },
-            ),
-          ],
+          textAlign: TextAlign.center,
+          decoration: const InputDecoration(
+            border: InputBorder.none,
+          ),
+          onTapOutside: (e) {
+            onFinished();
+          },
+          onEditingComplete: onFinished,
+          onSubmitted: (s) {
+            onSubmitted!(s);
+          },
         ),
       ),
     );

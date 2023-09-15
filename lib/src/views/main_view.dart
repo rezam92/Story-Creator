@@ -27,40 +27,32 @@ class _MainControllerViewState extends State<MainControllerView> {
   @override
   Widget build(BuildContext context) {
     //moved Material App from here to whatsappstoryeditor screen
-    return WillPopScope(
-      onWillPop: () async {
-        Navigator.popUntil(context, (route) => route.isFirst);
-        return true;
-      },
-      child: SafeArea(
-        child: Scaffold(
-            backgroundColor: Colors.black,
-            body: Obx(
-              () => Column(
-                      children: [
-                        Expanded(
-                          child: Stack(
-                            children: [
-                              controller.editingModeSelected == EDITINGMODE.NONE
-                                  ? Center(
-                                      child: BackgroundImage(
-                                          context: context, file: widget.file))
-                                  : BackgroundImage(
-                                      context: context, file: widget.file),
-                              controller.editingModeSelected ==
-                                      EDITINGMODE.DRAWING
-                                  ? const PaintView(shouldShowControls: true)
-                                  : controller.editingModeSelected ==
-                                          EDITINGMODE.TEXT
-                                      ? const TextView()
-                                      : BasicView(file: widget.file)
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-            )),
-      ),
+    return SafeArea(
+      child: Scaffold(
+          backgroundColor: Theme.of(context).colorScheme.background,
+          body: Obx(
+            () => Column(
+                    children: [
+                      Expanded(
+                        child: Stack(
+                          children: [
+                                Center(
+                                    child: BackgroundImage(
+                                        context: context, file: widget.file)),
+
+                            controller.editingModeSelected ==
+                                    EDITINGMODE.DRAWING
+                                ? const PaintView(shouldShowControls: true)
+                                : controller.editingModeSelected ==
+                                        EDITINGMODE.TEXT
+                                    ? const TextView()
+                                    : BasicView(file: widget.file)
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+          )),
     );
   }
 }

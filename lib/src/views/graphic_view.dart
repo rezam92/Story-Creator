@@ -44,175 +44,155 @@ class _GraphicViewState extends State<GraphicView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        constraints: const BoxConstraints.expand(),
+      body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 24.0),
-        decoration: const BoxDecoration(
-          color: Colors.black,
-          // image: DecorationImage(
-          //   //add selected image here
-          //   image: NetworkImage(
-          //     'https://cdn.pixabay.com/photo/2022/12/05/19/36/hellebore-7637542_1280.jpg',
-          //   ),
-          //   fit: BoxFit.cover,
-          // ),
-        ),
-        child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                const SizedBox(height: 18.0),
-                _topBar(context),
-                const SizedBox(height: 10.0),
-                isSearchSelected ? _searchBar() : _switchBar(),
-                const SizedBox(height: 35),
-                switchSelected == 0
-                    ? const Text("Shapes",
-                        style: TextStyle(color: Colors.grey, fontSize: 13))
-                    : const SizedBox(),
-                switchSelected == 0
-                    ? SizedBox(
-                        height: 200,
-                        child: GridView.builder(
-                          padding: const EdgeInsets.all(0),
-                          itemCount: EditableItem.getSvgShapes().length,
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 4,
-                          ),
-                          itemBuilder: (BuildContext context, int index) {
-                            return Container(
-                              alignment: (index + 1) % 4 == 0
-                                  ? Alignment.centerRight
-                                  : index % 4 == 0
-                                      ? Alignment.centerLeft
-                                      : Alignment.center,
-                              margin: (index + 1) % 4 == 0
-                                  ? const EdgeInsets.only(left: 14)
-                                  : index % 4 == 0
-                                      ? const EdgeInsets.only(right: 14)
-                                      : const EdgeInsets.only(
-                                          right: 8, left: 8),
-                              child: GestureDetector(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            const SizedBox(height: 18.0),
+            _topBar(context),
+            const SizedBox(height: 10.0),
+            isSearchSelected ? _searchBar() : _switchBar(),
+            const SizedBox(height: 35),
+            switchSelected == 0
+                ? const Text("Shapes",
+                    style: TextStyle(color: Colors.grey, fontSize: 13))
+                : const SizedBox(),
+            switchSelected == 0
+                ? SizedBox(
+                    height: 200,
+                    child: GridView.builder(
+                      padding: const EdgeInsets.all(0),
+                      itemCount: EditableItem.getSvgShapes().length,
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 4,
+                      ),
+                      itemBuilder: (BuildContext context, int index) {
+                        return Container(
+                          alignment: (index + 1) % 4 == 0
+                              ? Alignment.centerRight
+                              : index % 4 == 0
+                                  ? Alignment.centerLeft
+                                  : Alignment.center,
+                          margin: (index + 1) % 4 == 0
+                              ? const EdgeInsets.only(left: 14)
+                              : index % 4 == 0
+                                  ? const EdgeInsets.only(right: 14)
+                                  : const EdgeInsets.only(
+                                      right: 8, left: 8),
+                          child: GestureDetector(
+                              onTap: () {
+                                editingController.addToEditableItemList(
+                                    EditableItem(
+                                        editableItemType:
+                                            EditableItemType.shape,
+                                        shapeSvg:
+                                            EditableItem.changeSvgColor(
+                                                EditableItem.getSvgShapes()
+                                                    .elementAt(index),
+                                                editingController
+                                                    .hueController.value
+                                                    .toColor()),
+                                        matrixInfo: Matrix4.identity()));
+
+                                Navigator.pop(context);
+                              },
+                              child: Container(
+                                color: Colors.transparent,
+                                height: 65,
+                                width: 65,
+                                child: SvgPicture.string(
+                                  EditableItem.changeSvgColor(
+                                      EditableItem.getSvgShapes()
+                                          .elementAt(index),
+                                      editingController.hueController.value
+                                          .toColor()),
+                                ),
+                              )),
+                        );
+                      },
+                    ),
+                  )
+                : const SizedBox.shrink(),
+            Text(switchSelected == 0 ? "Stickers" : "Smileys & People",
+                style: const TextStyle(color: Colors.grey, fontSize: 13)),
+            isStickersLoading
+                ? const Center(child: CircularProgressIndicator())
+                : Expanded(
+                    child: GridView.builder(
+                      padding: const EdgeInsets.all(0),
+                      itemCount: switchSelected == 0
+                          ? stickerData.stickerPacks!.first.stickers!
+                              .length //stickers
+                          : 88, //out of 300+ available emojies in asset
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 4,
+                      ),
+                      itemBuilder: (BuildContext context, int index) {
+                        return Container(
+                          alignment: (index + 1) % 4 == 0
+                              ? Alignment.centerRight
+                              : index % 4 == 0
+                                  ? Alignment.centerLeft
+                                  : Alignment.center,
+                          margin: (index + 1) % 4 == 0
+                              ? const EdgeInsets.only(left: 14)
+                              : index % 4 == 0
+                                  ? const EdgeInsets.only(right: 14)
+                                  : const EdgeInsets.only(
+                                      right: 8, left: 8),
+                          child: switchSelected == 0
+                              ? GestureDetector(
                                   onTap: () {
-                                    editingController.addtoEditableItemList(
+                                    editingController.addToEditableItemList(
                                         EditableItem(
                                             editableItemType:
-                                                EditableItemType.shape,
-                                            shapeSvg:
-                                                EditableItem.changeSvgColor(
-                                                    EditableItem.getSvgShapes()
-                                                        .elementAt(index),
-                                                    editingController
-                                                        .hueController.value
-                                                        .toColor()),
-                                            matrixInfo: Matrix4.identity()));
+                                                EditableItemType.graphic,
+                                            graphicImagePath:
+                                                "packages/whatsapp_story_editor/assets/stickers/2/${stickerData.stickerPacks!.first.stickers![index].imageFile}",
+                                            matrixInfo:
+                                                Matrix4.identity()));
 
                                     Navigator.pop(context);
                                   },
-                                  child: Container(
-                                    color: Colors.black,
+                                  child: SizedBox(
                                     height: 65,
                                     width: 65,
-                                    child: SvgPicture.string(
-                                      EditableItem.changeSvgColor(
-                                          EditableItem.getSvgShapes()
-                                              .elementAt(index),
-                                          editingController.hueController.value
-                                              .toColor()),
+                                    child: Image.asset(
+                                      "packages/whatsapp_story_editor/assets/stickers/2/${stickerData.stickerPacks!.first.stickers![index].imageFile}",
+                                      fit: BoxFit.contain,
                                     ),
-                                  )),
-                            );
-                          },
-                        ),
-                      )
-                    : const SizedBox(),
-                Text(switchSelected == 0 ? "Favourites" : "Smileys & People",
-                    style: const TextStyle(color: Colors.grey, fontSize: 13)),
-                isStickersLoading
-                    ? const SizedBox()
-                    : Expanded(
-                        child: GridView.builder(
-                          padding: const EdgeInsets.all(0),
-                          itemCount: switchSelected == 0
-                              ? stickerData.stickerPacks!.first.stickers!
-                                  .length //stickers
-                              : 88, //out of 300+ available emojies in asset
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 4,
-                          ),
-                          itemBuilder: (BuildContext context, int index) {
-                            return Container(
-                              alignment: (index + 1) % 4 == 0
-                                  ? Alignment.centerRight
-                                  : index % 4 == 0
-                                      ? Alignment.centerLeft
-                                      : Alignment.center,
-                              margin: (index + 1) % 4 == 0
-                                  ? const EdgeInsets.only(left: 14)
-                                  : index % 4 == 0
-                                      ? const EdgeInsets.only(right: 14)
-                                      : const EdgeInsets.only(
-                                          right: 8, left: 8),
-                              child: switchSelected == 0
-                                  ? GestureDetector(
-                                      onTap: () {
-                                        editingController.addtoEditableItemList(
-                                            EditableItem(
-                                                editableItemType:
-                                                    EditableItemType.graphic,
-                                                graphicImagePath:
-                                                    "packages/whatsapp_story_editor/assets/stickers/2/${stickerData.stickerPacks!.first.stickers![index].imageFile}",
-                                                matrixInfo:
-                                                    Matrix4.identity()));
-
-                                        Navigator.pop(context);
-                                      },
-                                      child: SizedBox(
-                                        height: 65,
-                                        width: 65,
-                                        child: Image.asset(
-                                          "packages/whatsapp_story_editor/assets/stickers/2/${stickerData.stickerPacks!.first.stickers![index].imageFile}",
-                                          fit: BoxFit.contain,
-                                        ),
-                                        // child:  SvgPicture.network(
-                                        //  'http://upload.wikimedia.org/wikipedia/commons/0/02/SVG_logo.svg',
-                                        //   placeholderBuilder: (BuildContext context) => Container(
-                                        //   padding: const EdgeInsets.all(30.0),
-                                        //   child: const CircularProgressIndicator(),
-                                        // ),
-                                        // )
-                                      ),
-                                    )
-                                  : GestureDetector(
-                                      onTap: () {
-                                        editingController.addtoEditableItemList(
-                                            EditableItem(
-                                                editableItemType:
-                                                    EditableItemType.graphic,
-                                                graphicImagePath:
-                                                    "packages/whatsapp_story_editor/assets/emojies/e15${index + 11}.png",
-                                                matrixInfo:
-                                                    Matrix4.identity()));
-                                        Navigator.pop(context);
-                                      },
-                                      child: SizedBox(
-                                        height: 60,
-                                        width: 60,
-                                        child: Image.asset(
-                                          "packages/whatsapp_story_editor/assets/emojies/e15${index + 11}.png",
-                                          fit: BoxFit.contain,
-                                        ),
-                                      ),
+                                  ),
+                                )
+                              : GestureDetector(
+                                  onTap: () {
+                                    editingController.addToEditableItemList(
+                                        EditableItem(
+                                            editableItemType:
+                                                EditableItemType.graphic,
+                                            graphicImagePath:
+                                                "packages/whatsapp_story_editor/assets/emojies/e15${index + 11}.png",
+                                            matrixInfo:
+                                                Matrix4.identity()));
+                                    Navigator.pop(context);
+                                  },
+                                  child: SizedBox(
+                                    height: 60,
+                                    width: 60,
+                                    child: Image.asset(
+                                      "packages/whatsapp_story_editor/assets/emojies/e15${index + 11}.png",
+                                      fit: BoxFit.contain,
                                     ),
-                            );
-                          },
-                        ),
-                      )
-              ],
-            )),
+                                  ),
+                                ),
+                        );
+                      },
+                    ),
+                  )
+          ],
+        ),
       ),
     );
   }
@@ -227,9 +207,9 @@ class _GraphicViewState extends State<GraphicView> {
       Obx(() => circleWidget(
           radius: 40,
           bgColor: Get.find<EditingController>().hueController.value.toColor(),
-          child: const Icon(
+          child: Icon(
             Icons.emoji_emotions_outlined,
-            color: Colors.white,
+            color: Theme.of(context).colorScheme.surface,
           )))
     ]);
   }
@@ -243,8 +223,7 @@ class _GraphicViewState extends State<GraphicView> {
         borderRadius: BorderRadius.circular(20),
       ),
       child: TextField(
-        style: const TextStyle(
-            color: Colors.black54, fontSize: 16.0, fontWeight: FontWeight.w400),
+        style: Theme.of(context).textTheme.titleMedium,
         decoration: InputDecoration(
             border: InputBorder.none,
             suffixIcon: GestureDetector(
@@ -253,13 +232,10 @@ class _GraphicViewState extends State<GraphicView> {
                     isSearchSelected = false;
                   });
                 },
-                child: const Icon(Icons.close, color: Colors.black54)),
-            prefixIcon: const Icon(Icons.search, color: Colors.black87),
-            hintText: 'Search',
-            hintStyle: const TextStyle(
-                color: Colors.black45,
-                fontSize: 18.0,
-                fontWeight: FontWeight.w400)),
+                child: Icon(Icons.close, color: Theme.of(context).colorScheme.background)),
+            prefixIcon: Icon(Icons.search, color: Theme.of(context).colorScheme.background),
+            labelText: 'Search',
+        ),
       ),
     );
   }

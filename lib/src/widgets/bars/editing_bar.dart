@@ -24,6 +24,12 @@ editingBar({required BuildContext context, required File file}) {
               Navigator.popUntil(context, (route) => route.isFirst);
             },
             icon: Icons.close),
+        const SizedBox(width: 4.0),
+        Get.find<EditingController>().editableItemInfo.isNotEmpty
+            ? undo(onTap: () {
+          Get.find<EditingController>().editableItemInfo.removeLast();
+        }, theme: Theme.of(context))
+            : const SizedBox.shrink(),
         const Spacer(),
         buildIcon(
             theme: Theme.of(context),
@@ -60,11 +66,6 @@ class _VisibilityButtonState extends State<VisibilityButton> {
         replacement: buildIconButton(),
         child: Row(
           children: [
-            Get.find<EditingController>().editableItemInfo.isNotEmpty
-                ? undo(onTap: () {
-              Get.find<EditingController>().editableItemInfo.removeLast();
-            })
-                : const SizedBox.shrink(),
             buildIcon(
                 theme: Theme.of(context),
                 icon: Icons.emoji_emotions_outlined,
@@ -100,7 +101,7 @@ class _VisibilityButtonState extends State<VisibilityButton> {
         }, icon:
         Icon(isVisible? Icons.arrow_circle_right :
         Icons.arrow_circle_left,
-            color: Theme.of(context).colorScheme.surface, size: 36.0
+            color: Theme.of(context).colorScheme.surface, size: 32.0
         )
     );
 

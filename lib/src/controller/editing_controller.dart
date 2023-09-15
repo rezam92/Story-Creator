@@ -32,19 +32,12 @@ class EditingController extends GetxController {
   set editingModeSelected(EDITINGMODE neweditingModeSelected) =>
       _editingModeSelected.value = neweditingModeSelected;
 
-  /// Index of the filter that is selected
-  /// Be-default it is 0 which means none/no filter applied
-  final Rx<int> _selectedFilter = 0.obs;
-  int get selectedFilter => _selectedFilter.value;
-  set selectedFilter(int newSelectedFilter) =>
-      _selectedFilter.value = newSelectedFilter;
-
   /// Selected Editable Information from EDITINGMODE.GRAPHIC || EDITINGMODE.TEXT
   final RxList<EditableItem?> _editableItemInfo = <EditableItem>[].obs;
   List<EditableItem?> get editableItemInfo => _editableItemInfo;
   set editableItemInfo(List<EditableItem?> editableItemInfo) =>
       _editableItemInfo.value = editableItemInfo;
-  addtoEditableItemList(EditableItem editableItem) =>
+  addToEditableItemList(EditableItem editableItem) =>
       _editableItemInfo.add(editableItem);
   List<EditableItem> getEditableTextType() => _editableItemInfo
       .where((item) => item!.editableItemType == EditableItemType.text)
