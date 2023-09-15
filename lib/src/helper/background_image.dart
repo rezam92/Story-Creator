@@ -2,15 +2,15 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:whatsapp_story_editor/src/constants.dart';
-import 'package:whatsapp_story_editor/src/controller/editing_controller.dart';
-import 'package:whatsapp_story_editor/src/controller/utils.dart';
-import 'package:whatsapp_story_editor/src/enums/editable_item_type.dart';
-import 'package:whatsapp_story_editor/src/enums/editing_mode.dart';
-import 'package:whatsapp_story_editor/src/models/graphic_info.dart';
-import 'package:whatsapp_story_editor/src/views/paint_view.dart';
-import 'package:whatsapp_story_editor/src/helper/transformable.dart';
-import 'package:whatsapp_story_editor/src/widgets/text_dialog.dart';
+import 'package:story_creator_plus/src/constants.dart';
+import 'package:story_creator_plus/src/controller/editing_controller.dart';
+import 'package:story_creator_plus/src/controller/utils.dart';
+import 'package:story_creator_plus/src/enums/editable_item_type.dart';
+import 'package:story_creator_plus/src/enums/editing_mode.dart';
+import 'package:story_creator_plus/src/models/graphic_info.dart';
+import 'package:story_creator_plus/src/views/paint_view.dart';
+import 'package:story_creator_plus/src/helper/transformable.dart';
+import 'package:story_creator_plus/src/widgets/text_dialog.dart';
 
 class BackgroundImage extends StatefulWidget {
   final BuildContext? context;

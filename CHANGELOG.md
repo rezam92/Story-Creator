@@ -23,3 +23,6 @@
 ## 0.0.6 
 
 * handled image_crop_plus_updated issue
+
+## 0.1.0
+

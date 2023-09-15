@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:whatsapp_story_editor/src/constants.dart';
-import 'package:whatsapp_story_editor/src/controller/editing_controller.dart';
-import 'package:whatsapp_story_editor/src/enums/editable_item_type.dart';
-import 'package:whatsapp_story_editor/src/enums/editing_mode.dart';
-import 'package:whatsapp_story_editor/src/models/graphic_info.dart';
-import 'package:whatsapp_story_editor/src/models/text_info.dart';
-import 'package:whatsapp_story_editor/src/widgets/color_picker_slider.dart';
-import 'package:whatsapp_story_editor/src/widgets/bars/caption_bar.dart';
-import 'package:whatsapp_story_editor/src/widgets/circle_widget.dart';
-import 'package:whatsapp_story_editor/src/widgets/done_btn.dart';
-import 'package:whatsapp_story_editor/src/widgets/text_dialog.dart';
-import 'package:whatsapp_story_editor/src/widgets/undo.dart';
+import 'package:story_creator_plus/src/constants.dart';
+import 'package:story_creator_plus/src/controller/editing_controller.dart';
+import 'package:story_creator_plus/src/enums/editable_item_type.dart';
+import 'package:story_creator_plus/src/enums/editing_mode.dart';
+import 'package:story_creator_plus/src/models/graphic_info.dart';
+import 'package:story_creator_plus/src/models/text_info.dart';
+import 'package:story_creator_plus/src/widgets/color_picker_slider.dart';
+import 'package:story_creator_plus/src/widgets/bars/caption_bar.dart';
+import 'package:story_creator_plus/src/widgets/circle_widget.dart';
+import 'package:story_creator_plus/src/widgets/done_btn.dart';
+import 'package:story_creator_plus/src/widgets/text_dialog.dart';
+import 'package:story_creator_plus/src/widgets/undo.dart';
 
 ///Allows to add Text over the Image
 class TextView extends StatefulWidget {

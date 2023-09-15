@@ -1,8 +1,8 @@
 // ignore_for_file: unnecessary_string_escapes
 
 import 'package:flutter/material.dart';
-import 'package:whatsapp_story_editor/src/enums/editable_item_type.dart';
-import 'package:whatsapp_story_editor/src/models/text_info.dart';
+import 'package:story_creator_plus/src/enums/editable_item_type.dart';
+import 'package:story_creator_plus/src/models/text_info.dart';
 
 class EditableItem {
   final EditableItemType editableItemType;

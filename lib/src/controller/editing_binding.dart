@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:whatsapp_story_editor/src/controller/editing_controller.dart';
+import 'package:story_creator_plus/src/controller/editing_controller.dart';
 
 class EditingBinding implements Bindings {
 // default dependency

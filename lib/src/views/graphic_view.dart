@@ -3,12 +3,12 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:whatsapp_story_editor/src/controller/editing_controller.dart';
-import 'package:whatsapp_story_editor/src/enums/editable_item_type.dart';
-import 'package:whatsapp_story_editor/src/models/sticker_data.dart';
-import 'package:whatsapp_story_editor/src/models/graphic_info.dart';
-import 'package:whatsapp_story_editor/src/widgets/circle_widget.dart';
-import 'package:whatsapp_story_editor/src/widgets/icon_widget.dart';
+import 'package:story_creator_plus/src/controller/editing_controller.dart';
+import 'package:story_creator_plus/src/enums/editable_item_type.dart';
+import 'package:story_creator_plus/src/models/sticker_data.dart';
+import 'package:story_creator_plus/src/models/graphic_info.dart';
+import 'package:story_creator_plus/src/widgets/circle_widget.dart';
+import 'package:story_creator_plus/src/widgets/icon_widget.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 // Allows to add Graphic (Stickers/Emojie)
@@ -28,7 +28,7 @@ class _GraphicViewState extends State<GraphicView> {
 
   _loadStickers() async {
     var data = await rootBundle.loadString(
-        "packages/whatsapp_story_editor/assets/stickers/sticker_packs.json");
+        "packages/story_creator_plus/assets/stickers/sticker_packs.json");
     stickerData = StickerData.fromJson(jsonDecode(data.toString()));
     setState(() {
       isStickersLoading = false;
@@ -151,7 +151,7 @@ class _GraphicViewState extends State<GraphicView> {
                                             editableItemType:
                                                 EditableItemType.graphic,
                                             graphicImagePath:
-                                                "packages/whatsapp_story_editor/assets/stickers/2/${stickerData.stickerPacks!.first.stickers![index].imageFile}",
+                                                "packages/story_creator_plus/assets/stickers/2/${stickerData.stickerPacks!.first.stickers![index].imageFile}",
                                             matrixInfo:
                                                 Matrix4.identity()));
 
@@ -161,7 +161,7 @@ class _GraphicViewState extends State<GraphicView> {
                                     height: 65,
                                     width: 65,
                                     child: Image.asset(
-                                      "packages/whatsapp_story_editor/assets/stickers/2/${stickerData.stickerPacks!.first.stickers![index].imageFile}",
+                                      "packages/story_creator_plus/assets/stickers/2/${stickerData.stickerPacks!.first.stickers![index].imageFile}",
                                       fit: BoxFit.contain,
                                     ),
                                   ),
@@ -173,7 +173,7 @@ class _GraphicViewState extends State<GraphicView> {
                                             editableItemType:
                                                 EditableItemType.graphic,
                                             graphicImagePath:
-                                                "packages/whatsapp_story_editor/assets/emojies/e15${index + 11}.png",
+                                                "packages/story_creator_plus/assets/emojies/e15${index + 11}.png",
                                             matrixInfo:
                                                 Matrix4.identity()));
                                     Navigator.pop(context);
@@ -182,7 +182,7 @@ class _GraphicViewState extends State<GraphicView> {
                                     height: 60,
                                     width: 60,
                                     child: Image.asset(
-                                      "packages/whatsapp_story_editor/assets/emojies/e15${index + 11}.png",
+                                      "packages/story_creator_plus/assets/emojies/e15${index + 11}.png",
                                       fit: BoxFit.contain,
                                     ),
                                   ),

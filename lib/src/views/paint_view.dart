@@ -3,12 +3,12 @@ import 'package:get/get.dart';
 import 'dart:async';
 import 'dart:ui';
 import 'package:perfect_freehand/perfect_freehand.dart';
-import 'package:whatsapp_story_editor/src/controller/editing_controller.dart';
-import 'package:whatsapp_story_editor/src/enums/editing_mode.dart';
-import 'package:whatsapp_story_editor/src/models/paint_info.dart';
-import 'package:whatsapp_story_editor/src/models/stroke_options_model.dart';
-import 'package:whatsapp_story_editor/src/widgets/circle_widget.dart';
-import 'package:whatsapp_story_editor/src/helper/sketcher.dart';
+import 'package:story_creator_plus/src/controller/editing_controller.dart';
+import 'package:story_creator_plus/src/enums/editing_mode.dart';
+import 'package:story_creator_plus/src/models/paint_info.dart';
+import 'package:story_creator_plus/src/models/stroke_options_model.dart';
+import 'package:story_creator_plus/src/widgets/circle_widget.dart';
+import 'package:story_creator_plus/src/helper/sketcher.dart';
 import '../models/stroke_model.dart';
 import '../widgets/color_picker_slider.dart';
 import '../widgets/done_btn.dart';
@@ -111,7 +111,7 @@ class _PaintViewState extends State<PaintView> {
                     },
                     child: Image.asset(
                       'assets/icons/draw$i.png',
-                      package: 'whatsapp_story_editor',
+                      package: 'story_creator_plus',
                       fit: BoxFit.fitHeight,
                     ),
                   ),

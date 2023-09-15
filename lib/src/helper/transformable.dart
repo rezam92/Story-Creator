@@ -1,6 +1,6 @@
 // ignore_for_file: import_of_legacy_library_into_null_safe
 import 'package:flutter/material.dart';
-import 'package:whatsapp_story_editor/src/helper/matrix_gesture_detector.dart';
+import 'package:story_creator_plus/src/helper/matrix_gesture_detector.dart';
 // import 'package:matrix_gesture_detector/matrix_gesture_detector.dart';
 
 class TransformableWidget extends StatefulWidget {

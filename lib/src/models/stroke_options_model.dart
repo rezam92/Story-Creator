@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:whatsapp_story_editor/src/enums/stroke_type.dart';
+import 'package:story_creator_plus/src/enums/stroke_type.dart';
 
 class StrokeOptions {
   /// The base size (diameter) of the stroke.

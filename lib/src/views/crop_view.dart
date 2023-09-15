@@ -3,10 +3,10 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_crop_plus_updated/image_crop_plus_updated.dart';
-import 'package:whatsapp_story_editor/src/controller/editing_controller.dart';
-import 'package:whatsapp_story_editor/src/controller/utils.dart';
-import 'package:whatsapp_story_editor/src/widgets/done_btn.dart';
-import 'package:whatsapp_story_editor/src/widgets/icon_widget.dart';
+import 'package:story_creator_plus/src/controller/editing_controller.dart';
+import 'package:story_creator_plus/src/controller/utils.dart';
+import 'package:story_creator_plus/src/widgets/done_btn.dart';
+import 'package:story_creator_plus/src/widgets/icon_widget.dart';
 
 //Allows to crop image
 class CropView extends StatefulWidget {

@@ -541,6 +541,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.11.0"
+  story_creator_plus:
+    dependency: "direct main"
+    description:
+      path: ".."
+      relative: true
+    source: path
+    version: "0.1.0"
   stream_channel:
     dependency: transitive
     description:
@@ -669,13 +676,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.1.4-beta"
-  whatsapp_story_editor:
-    dependency: "direct main"
-    description:
-      path: ".."
-      relative: true
-    source: path
-    version: "0.0.5"
   win32:
     dependency: transitive
     description:

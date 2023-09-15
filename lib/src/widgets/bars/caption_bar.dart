@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:whatsapp_story_editor/src/constants.dart';
-import 'package:whatsapp_story_editor/src/controller/editing_controller.dart';
+import 'package:story_creator_plus/src/constants.dart';
+import 'package:story_creator_plus/src/controller/editing_controller.dart';
 
 import '../../../story_creator.dart';
 import '../../controller/utils.dart';

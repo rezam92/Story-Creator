@@ -1,7 +1,7 @@
 import 'package:example/saved_image_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:whatsapp_story_editor/story_creator.dart';
+import 'package:story_creator_plus/story_creator.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -50,7 +50,7 @@ class _MyAppState extends State<MyApp> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const WhatsappStoryEditor()),
+                      builder: (context) => const StoryCreator()),
                 ).then((whatsappStoryEditorResult) {
                   if (whatsappStoryEditorResult != null) {
                     Navigator.push(

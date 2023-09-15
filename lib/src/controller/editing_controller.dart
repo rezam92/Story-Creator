@@ -1,9 +1,9 @@
 import 'dart:io';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:whatsapp_story_editor/src/enums/editable_item_type.dart';
-import 'package:whatsapp_story_editor/src/models/graphic_info.dart';
-import 'package:whatsapp_story_editor/src/enums/editing_mode.dart';
+import 'package:story_creator_plus/src/enums/editable_item_type.dart';
+import 'package:story_creator_plus/src/models/graphic_info.dart';
+import 'package:story_creator_plus/src/enums/editing_mode.dart';
 
 class EditingController extends GetxController {
   /// The color selected from the color vertical slider

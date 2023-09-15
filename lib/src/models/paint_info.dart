@@ -1,5 +1,5 @@
-import 'package:whatsapp_story_editor/src/models/stroke_model.dart';
-import 'package:whatsapp_story_editor/src/models/stroke_options_model.dart';
+import 'package:story_creator_plus/src/models/stroke_model.dart';
+import 'package:story_creator_plus/src/models/stroke_options_model.dart';
 
 class PaintInfo {
   final List<Stroke> lines;

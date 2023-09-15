@@ -2,12 +2,12 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hsv_color_pickers/hsv_color_pickers.dart';
-import 'package:whatsapp_story_editor/src/controller/editing_controller.dart';
-import 'package:whatsapp_story_editor/src/enums/editing_mode.dart';
-import 'package:whatsapp_story_editor/src/views/basic_view.dart';
-import 'package:whatsapp_story_editor/src/views/paint_view.dart';
-import 'package:whatsapp_story_editor/src/views/text_view.dart';
-import 'package:whatsapp_story_editor/src/helper/background_image.dart';
+import 'package:story_creator_plus/src/controller/editing_controller.dart';
+import 'package:story_creator_plus/src/enums/editing_mode.dart';
+import 'package:story_creator_plus/src/views/basic_view.dart';
+import 'package:story_creator_plus/src/views/paint_view.dart';
+import 'package:story_creator_plus/src/views/text_view.dart';
+import 'package:story_creator_plus/src/helper/background_image.dart';
 
 
 class MainControllerView extends StatefulWidget {

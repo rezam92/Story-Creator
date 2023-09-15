@@ -1,10 +1,10 @@
-library whatsapp_story_editor;
+library story_creator_plus;
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker_plus/image_picker_plus.dart';
-import 'package:whatsapp_story_editor/src/controller/editing_binding.dart';
-import 'package:whatsapp_story_editor/src/views/main_view.dart';
+import 'package:story_creator_plus/src/controller/editing_binding.dart';
+import 'package:story_creator_plus/src/views/main_view.dart';
 
 ///To encapsulate the result of editing a WhatsApp story.
 ///The image property contains the edited image,
@@ -16,14 +16,14 @@ class WhatsappStoryEditorResult {
 }
 
 ///Allows users to edit a WhatsApp story by adding captions and stickers to an image.
-class WhatsappStoryEditor extends StatefulWidget {
-  const WhatsappStoryEditor({Key? key}) : super(key: key);
+class StoryCreator extends StatefulWidget {
+  const StoryCreator({Key? key}) : super(key: key);
 
   @override
-  State<WhatsappStoryEditor> createState() => _WhatsappStoryEditorState();
+  State<StoryCreator> createState() => _StoryCreatorState();
 }
 
-class _WhatsappStoryEditorState extends State<WhatsappStoryEditor> {
+class _StoryCreatorState extends State<StoryCreator> {
   @override
   void initState() {
     //Switch to WhatsappCamera
