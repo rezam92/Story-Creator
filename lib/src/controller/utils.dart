@@ -4,7 +4,6 @@ import 'dart:io';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:path_provider/path_provider.dart';
 
 /// The key needed to capture screenshot of widget
 GlobalKey getScreenshotKey = GlobalKey(debugLabel: "image-canvas");
@@ -22,7 +21,7 @@ Future<MemoryImage> takeScreenshotAndReturnMemoryImage(GlobalKey key) async {
 /// Converts [MemoryImage] to [File]
 /// Needed for the package for Cropping Image
 Future<File> getFileFromMemoryImage(MemoryImage memoryImage) async {
-  final Directory tempDir = await getTemporaryDirectory();
+  final Directory tempDir = Directory.systemTemp;
   final String tempPath = tempDir.path;
   final File tempFile = File('$tempPath/image.jpg');
   return await tempFile.writeAsBytes(memoryImage.bytes.toList());

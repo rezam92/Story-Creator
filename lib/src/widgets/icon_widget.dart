@@ -10,6 +10,6 @@ buildIcon({required IconData icon, Function()? onTap, required ThemeData theme})
             onTap();
           }
         },
-        icon: Icon(icon, color: theme.colorScheme.surface, size: 24),
+        icon: Icon(icon, color: theme.colorScheme.inverseSurface, size: 24),
       ),
 );

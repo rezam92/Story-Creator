@@ -21,117 +21,61 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  static Color mattBlack = const Color.fromARGB(255, 25, 40, 46);
-  static Color green3 = const Color.fromARGB(255, 7, 191, 139);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: ThemeData.dark(useMaterial3: true).copyWith(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.purpleAccent,
-              brightness: Brightness.dark).copyWith(
-            surface: Colors.white,
-            background: Colors.black,
-          ),
-          textTheme: const TextTheme(
-            titleMedium: TextStyle(
-              fontWeight: FontWeight.w500,
-              color: Colors.white,
-              fontSize: 16,
-            ),
-          ),
-        ),
-        home: Scaffold(
-          backgroundColor: Colors.black,
-          floatingActionButton: Builder(builder: (context) {
-            return FloatingActionButton(
-              onPressed: () async {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const StoryCreator()),
-                ).then((whatsappStoryEditorResult) {
-                  if (whatsappStoryEditorResult != null) {
+        darkTheme: ThemeData.dark(useMaterial3: true),
+        theme: ThemeData.light(useMaterial3: true),
+        themeMode: ThemeMode.system,
+        home: const StoryApp(),
+    );
+  }
+}
+
+class StoryApp extends StatelessWidget {
+  const StoryApp({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Center(
+            child: SizedBox(
+              width: 130,
+              height: 50,
+              child: TextButton(
+                onPressed: () async {
+                  final result = await Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const StoryCreator(),
+                  ));
+                  if (result != null&&context.mounted) {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (context) => SavedImageView(
-                                image: whatsappStoryEditorResult.image,
-                                caption: whatsappStoryEditorResult.caption,
-                              )),
+                            image: result.image,
+                            caption: result.caption,
+                          )),
                     );
                   }
-                });
-              },
-              child: Container(
-                height: 60,
-                width: 60,
-                decoration:
-                    BoxDecoration(color: green3, shape: BoxShape.circle),
-                child: const Icon(
-                  Icons.camera_alt,
-                  color: Colors.white,
-                  size: 20,
+                },
+                child: const Row(
+                  children: [
+                    Icon(Icons.image),
+                    Text("Create story"),
+                  ],
                 ),
               ),
-            );
-          }),
-          body: Container(
-            color: mattBlack,
-            padding: const EdgeInsets.only(top: 50, left: 18, right: 18),
-            height: 140,
-            width: double.infinity,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  "WhatsApp",
-                  style: TextStyle(
-                    fontWeight: FontWeight.w400,
-                    color: Colors.white38,
-                    fontSize: 21,
-                  ),
-                ),
-                const Spacer(),
-                const Expanded(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Chats",
-                        style: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          color: Colors.white38,
-                          fontSize: 16,
-                        ),
-                      ),
-                      Center(
-                        child: Text(
-                          "Status",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w400,
-                            color: Colors.white38,
-                            fontSize: 16,
-                          ),
-                        ),
-                      ),
-                      Text(
-                        "Calls",
-                        style: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          color: Colors.white38,
-                          fontSize: 16,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 12),
-                Center(child: Container(height: 3, width: 130, color: green3))
-              ],
             ),
           ),
-        ));
+        ],
+      ),
+    );
   }
 }

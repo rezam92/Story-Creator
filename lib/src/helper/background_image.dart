@@ -174,14 +174,12 @@ class _BackgroundImageState extends State<BackgroundImage>
                               );
                             },
                             onScaleStart: (details) {
-                              print("Scaling Started");
                               setState(
                                   () => controller.editableItemInfo[j]?.
                                   scaleFactor = details.scale.toDouble());
                               checkIfDeletionEligible(j, details);
                             },
                             onScaleEnd: (d) {
-                              print("Scaling Ended");
                               controller.isDeletionEligible = false;
                             },
                             transform: controller.editableItemInfo

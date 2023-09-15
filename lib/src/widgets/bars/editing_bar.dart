@@ -21,7 +21,8 @@ editingBar({required BuildContext context, required File file}) {
         buildIcon(
             theme: Theme.of(context),
             onTap: () async {
-              Navigator.popUntil(context, (route) => route.isFirst);
+              Navigator.pop(context);
+              Navigator.pop(context);
             },
             icon: Icons.close),
         const SizedBox(width: 4.0),
@@ -101,7 +102,7 @@ class _VisibilityButtonState extends State<VisibilityButton> {
         }, icon:
         Icon(isVisible? Icons.arrow_circle_right :
         Icons.arrow_circle_left,
-            color: Theme.of(context).colorScheme.surface, size: 32.0
+            color: Theme.of(context).colorScheme.inverseSurface, size: 32.0
         )
     );
 

@@ -10,4 +10,11 @@
 * works with themes
 * better colors
 * better font sizes
+## 0.1.1
+* Fixed some bugs
+* fixed color bugs
+* Completely changed Example app
+* Removed some dependencies to make the package smaller
+* Removed unused asset icons
+* Bump dependencies to latest version
 

@@ -9,10 +9,10 @@ import 'package:story_creator_plus/src/views/main_view.dart';
 ///To encapsulate the result of editing a WhatsApp story.
 ///The image property contains the edited image,
 ///and the caption property contains the caption (if any) that was added to the image.
-class WhatsappStoryEditorResult {
+class StoryCreatorResult {
   MemoryImage image;
   String? caption;
-  WhatsappStoryEditorResult({required this.image, this.caption});
+  StoryCreatorResult({required this.image, this.caption});
 }
 
 ///Allows users to edit a WhatsApp story by adding captions and stickers to an image.
@@ -26,7 +26,6 @@ class StoryCreator extends StatefulWidget {
 class _StoryCreatorState extends State<StoryCreator> {
   @override
   void initState() {
-    //Switch to WhatsappCamera
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       ImagePickerPlus picker = ImagePickerPlus(context);
 
@@ -52,7 +51,9 @@ class _StoryCreatorState extends State<StoryCreator> {
     return GetMaterialApp(
       initialBinding: EditingBinding(),
       debugShowCheckedModeBanner: false,
-      home: Container(),
+      home: TextButton(onPressed: (){
+        Navigator.pop(context);//Used to go back if WillPopScope doesn't work.
+      },child: const Text("Go back"),)
     );
   }
 }

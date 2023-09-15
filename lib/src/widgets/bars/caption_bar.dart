@@ -40,18 +40,22 @@ Widget captionBar({required BuildContext context}) {
       }),
       const SizedBox(width: 10.0),
       IconButton(
+        tooltip: "Create story",
         onPressed: () async {
-          takeScreenshotAndReturnMemoryImage(getScreenshotKey)
-              .then((imageData) {
+          final imageData = await takeScreenshotAndReturnMemoryImage(getScreenshotKey);
+          if (context.mounted){
             Navigator.pop(context);
             Navigator.pop(
                 context,
-                WhatsappStoryEditorResult(
+                StoryCreatorResult(
                     image: imageData,
-                    caption: Get.find<EditingController>().caption));
-          });
+                    caption: Get.find<EditingController>().caption
+                ),
+            );
+            Get.deleteAll();
+          }
         },
-        icon: Icon(Icons.send, color: Theme.of(context).colorScheme.surface),
+        icon: Icon(Icons.done, color: Theme.of(context).colorScheme.inverseSurface),
       )
     ]),
   );
