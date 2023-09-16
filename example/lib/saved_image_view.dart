@@ -24,6 +24,9 @@ class _SavedImageViewState extends State<SavedImageView> {
           children: [
             Expanded(
               child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.white),
+                ),
                 alignment: Alignment.center,
                 child: Image(
                   image: widget.image,

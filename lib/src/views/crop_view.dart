@@ -130,6 +130,8 @@ class _CropViewState extends State<CropView> {
     // _lastCropped?.delete();
     // debugPrint(' file:::: $file --- $_lastCropped');
     Get.find<EditingController>().backgroundImage = file;
+      controller.rotation = rotation;
+      controller.rotationAngle = angle;
     setState(() {});
     delayFunction(milliseconds: 800, todo: () => Navigator.of(context).pop());
   }

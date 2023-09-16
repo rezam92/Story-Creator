@@ -48,8 +48,7 @@ class _TextViewState extends State<TextView> {
         Positioned(
             top: sHeight * Constants.editingBarHeightRatio,
             bottom: sHeight *
-                (Constants.captionBarHeightRatio +
-                    Constants.bottomBarHeightRatio),
+                (Constants.captionBarHeightRatio),
             child: _drawTextPainter()),
         const Positioned(top: 80, right: 16, child: ColorPickerSlider())
       ],

@@ -17,4 +17,11 @@
 * Removed some dependencies to make the package smaller
 * Removed unused asset icons
 * Bump dependencies to latest version
+## 0.1.2
+* Fixed some bugs
+* fixed color bugs
+* fixed asset bugs
+* fixed some ui bugs
+* sizing fixed
+* better ui/theme for image picking
 

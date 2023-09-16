@@ -105,7 +105,6 @@ class _PaintViewState extends State<PaintView> {
                 children: [
                   circleWidget(
                     radius: controller.paintBrush == i ? 35 : 30,
-                    bgColor: Colors.black,
                     onTap: () {
                       controller.paintBrush = i;
                     },

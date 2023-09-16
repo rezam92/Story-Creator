@@ -30,7 +30,17 @@ class _StoryCreatorState extends State<StoryCreator> {
       ImagePickerPlus picker = ImagePickerPlus(context);
 
       SelectedImagesDetails? details =
-      await picker.pickImage(source: ImageSource.gallery);
+      await picker.pickImage(
+          source: ImageSource.gallery,
+        galleryDisplaySettings: GalleryDisplaySettings(
+          appTheme: AppTheme(
+            primaryColor: Theme.of(context).colorScheme.surface,
+            focusColor: Theme.of(context).colorScheme.inverseSurface,
+            shimmerHighlightColor: Theme.of(context).colorScheme.primary,
+            shimmerBaseColor: Theme.of(context).colorScheme.secondary,
+          )
+        ),
+      );
       if (details == null || details.selectedFiles.isEmpty) return;
       if (context.mounted) {
         Navigator.push(

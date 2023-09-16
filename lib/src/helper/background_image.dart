@@ -73,17 +73,14 @@ class _BackgroundImageState extends State<BackgroundImage>
     return RepaintBoundary(
       key: getScreenshotKey,
       child: Container(
-          height: sHeight * Constants.contentHeightRatio,
+          height: sHeight,
           width: sWidth,
-          clipBehavior:
-              controller.isDeletionEligible ? Clip.none : Clip.hardEdge,
-          decoration: const BoxDecoration(),
           alignment: Alignment.center,
           margin: EdgeInsets.only(
               top: sHeight * Constants.editingBarHeightRatio,
               bottom: sHeight *
-                  (Constants.captionBarHeightRatio +
-                      Constants.bottomBarHeightRatio)),
+                  (Constants.captionBarHeightRatio),
+          ),
           child: Obx(() => Stack(
                 alignment: Alignment.center,
                 clipBehavior: Clip.none,
@@ -92,19 +89,19 @@ class _BackgroundImageState extends State<BackgroundImage>
                           angle: controller.rotationAngle,
                           child: Center(
                             child: Container(
-                              //Only if image if horizontally rotated, it gets out of the screen visual bounds
+                              //NEEDS to be inside obx to update when rotation changes
                               constraints: controller.rotation == 1 ||
-                                      controller.rotation == 3
+                                  controller.rotation == 3
                                   ? BoxConstraints.tightFor(
-                                      // this specific height and width so it gets fit when flipped
-                                      height: Get.width * 0.95,
-                                      width: Get.height * 0.80)
+                                // this specific height and width so it gets fit when flipped
+                                  height: Get.width * 0.95,
+                                  width: Get.height * 0.80)
                                   : null,
                               child: Image.file(
                                 controller.backgroundImage.path.isEmpty
                                     ? widget.file
                                     : controller.backgroundImage,
-                                fit: BoxFit.contain,
+                                fit:BoxFit.contain,
                               ),
                             ),
                           ),
